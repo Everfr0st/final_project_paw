@@ -8,7 +8,7 @@
 import Home from './components/Landing/Home.vue';
 import Login from './components/Login/Login.vue';
 import Register from './components/Register/Register.vue';
-import Shops from './components/Landing/Shops.vue'
+import Shops from './components/Shop/Shops.vue'
 
 export default {
   name: 'App',
