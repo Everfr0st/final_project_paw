@@ -1,72 +1,75 @@
 <template>
-
+    <pageHeader/>
     <body class="body_home">
-        <nav class="navbar navbar-expand-lg bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Tienda</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto ">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Inicia</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Registrate</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tiendas</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Comidas rápidas</a></li>
-                            <li><a class="dropdown-item" href="#">Farmacias</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><img class="carrito" src="https://cdn-icons-png.flaticon.com/512/107/107831.png" ></a>
-                        </li>
-                    </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-        </nav>
 
-<div class="masterhome" style="background-image:url('./fondo.png')">
-        <div class="color-overlay d-flex justify-content-center align-items-center">
-            <section class="home">
-                <div class="container">
-                    <div class="left">
-                    <h2 class="left_h2">TU RESTAURANTE FAVORITO EN CALI A LA HORA QUE QUIERAS</h2>
-                    <p class="parrafo_left">Ordena cuando y desde donde quieras</p>
-                    </div>
-                        <div class="right">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./burguer.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Texto genial que hace comprar a la gente :D</h5>
+                        <p>ALGOOOOO</p>
                     </div>
                 </div>
-            </section>
+                <div class="carousel-item">
+                    <img src="./vegetables-gcc1d13691_1280.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Ordena cuando y desde donde quieras</h5>
+                        <p>ALGOOOOO</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./food-g8b0f6d280_1280.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>TU RESTAURANTE FAVORITO EN CALI A LA HORA QUE QUIERAS</h5>
+                        <p>ALGOOOOO</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-    </div>
-
-
     </body>
 
     <footer>
-
+        <Footer/>
     </footer>
 </template>
 
 <script>
+import PageHeader from "./pageHeader.vue";
+import Footer from "../Shared/Footer.vue";
 export default {
     setup() {
-        
     },
+    components: {
+    PageHeader,
+    Footer
+}
 }
 </script>
 
 <style scoped>
-
+h5{
+    color: yellow;
+}
+.carousel-item img {
+    top: 0;
+    left: 0;
+    min-height: 300px;
+    max-height: 576px;
+}
 </style>

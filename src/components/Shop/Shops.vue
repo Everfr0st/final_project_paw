@@ -1,45 +1,22 @@
 <template>
-        <header>
-            <nav class="navbar navbar-expand-lg bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Tienda</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto ">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Inicia</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Registrate</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tiendas</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Comidas rápidas</a></li>
-                            <li><a class="dropdown-item" href="#">Farmacias</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><img class="carrito" src="https://cdn-icons-png.flaticon.com/512/107/107831.png" ></a>
-                        </li>
-                    </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                </div>
-            </div>
-            </nav>
-        </header>
-    
+  <PageHeader/>
+  <div class="home">
+    <ProductDescriptionDrawer
+    :product = "product"
+    :active="active.product_drawer"
+    v-on:close-product-drawer="closeProductDrawer()"
+    />
 
-<body class="p-3 m-1 border-1 bd-example bd-example-row">
-
-<!-- Example Code -->
+    <div class="products-cards-container">
+      <ProductsSummaryCard
+      v-for="product in items"
+      :key="product.id"
+      :product="product"
+      v-on:view-product="viewProduct($event)"/>
+    </div>
+  </div>
+  
+    <!-- <body class="p-3 m-1 border-1 bd-example bd-example-row"> 
 
 <div class="container">
 <div class="row">
@@ -79,7 +56,7 @@
 </div>
   </div>
 
-  <!-- Force next columns to break to new line -->
+  //Force next columns to break to new line
   <div class="w-100"></div>
 
 
@@ -148,8 +125,50 @@
     </div>
 </footer>
 
-
-<!-- End Example Code -->
-
-    </body>
+    </body> -->
 </template>
+
+<script>
+  import PageHeader from "../Landing/pageHeader.vue";
+  import items from '../../data/items'
+  import ProductsSummaryCard from './ProductsSummaryCard.vue'
+  import ProductDescriptionDrawer from './ProductDescriptionDrawer.vue'
+  export default {
+    name: 'Shops',
+    components: {
+    PageHeader,
+    ProductsSummaryCard,
+    ProductDescriptionDrawer
+},
+    data () {
+      return {
+        items: items,
+        product: null,
+        active: {
+          product_drawer: false
+        }
+      }
+    },
+    methods: {
+      viewProduct(product) {
+        this.product = product
+        this.active.product_drawer = true
+        // console.log(product)
+      },
+
+      closeProductDrawer() {
+        this.active.product_drawer = false
+      }
+        
+      }
+    }
+  
+</script>
+
+<style lang="scss">
+  .product-cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+</style>
