@@ -52,6 +52,11 @@
 <script>
 import PageHeader from "./pageHeader.vue";
 import Footer from "../Shared/Footer.vue";
+import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
+
+const socket = io("http://localhost:4000");
+console.log(socket);
+
 export default {
     setup() {
     },

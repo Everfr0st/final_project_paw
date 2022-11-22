@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kodoti Chat</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <link rel="stylesheet" href="./style.css">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
 </head>
 
 <body>
@@ -51,7 +51,7 @@
                                 placeholder="Ingrese el mensaje">
                         </div>
                         <div class="control">
-                            <a @click="send" class="button is-info is-medium">
+                            <a @click="enviarMensaje" class="button is-info is-medium">
                                 Enviar
                             </a>
                         </div>
@@ -71,28 +71,40 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="./chat.js"></script> -->
 </body>
-<back></back>
 
 </template>
 
 <script>
 import PageHeader from "../Landing/pageHeader.vue";
-import back from "https://uao-sockets-acv.herokuapp.com/socket.io/socket.io.js";
-import back2 from "https://uao-sockets-acv.herokuapp.com/"
+import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
+
+const socket = io("http://localhost:4000");
 
 export default {
     name: 'Chat',
     components: {
     PageHeader,
-    back
-    }
+    },
+    methods: {
+        enviarMensaje: () => {
+            alert("Enviando mensaje...");
+        },
+        greet: function (event) {
+        // `this` inside methods points to the Vue instance
+        alert('Hello ' + this.name + '!');
+        // `event` is the native DOM event
+        if (event) {
+            alert(event.target.tagName);
+        }
+        }
+}
 };
 
   
 
 </script>
 
-<style>
+<style scoped>
 body {
     background: #ddd;
 }
