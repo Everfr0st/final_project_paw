@@ -19,6 +19,9 @@
                             
                         </li>
                         <li class="nav-item">
+                            <router-link to="/chat" class="nav-link">Chat</router-link>
+                        </li>
+                        <li class="nav-item">
                             <router-link to="/ShopCart" class="nav-link">
                                 <img class="carrito" src="https://cdn-icons-png.flaticon.com/512/107/107831.png" >
                             </router-link>

@@ -1,7 +1,6 @@
 <template>
     <PageHeader></PageHeader>
     
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,8 +13,6 @@
     <section id="app" class="hero is-fullheight">
         <div class="hero-body">
             <div class="container">
-                <h1 class="title">Kodoti Chat</h1>
-                <h2 class="subtitle">Powered by <a href="https://kodoti.com">kodoti.com</a></h2>
 
                 <template v-if="step === 'nick'">
                     <div class="columns">
@@ -34,8 +31,10 @@
                         </div>
                     </div>
                 </template>
+
                 <template v-else>
-                    <!-- <div v-if="messages.length" class="chat-container">
+                    <!-- Para recibir los mensajes -->
+                    <div v-if="messages.length" class="chat-container">
                         <div v-for="item in messages" :key ="item" class="{ 'has-text-right': nick === item.nick }">
                             <div class="box chat-message" :class="{ 'me': nick === item.nick }">
                                 <span class="has-text-weight-bold">{{ item.nick }}</span> - {{ item.message }}
@@ -43,8 +42,9 @@
                                     class="is-italic has-text-grey-light is-size-7">{{ new Date(item.date).toLocaleDateString() }}</span>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
 
+                    <!-- Para enviar el mensaje -->
                     <div class="field has-addons">
                         <div class="control is-expanded">
                             <input v-model="message" class="input is-medium" type="text"
@@ -59,6 +59,7 @@
                 </template>
             </div>
         </div>
+
         <footer v-if="step === 'chat'" class="hero-foot">
             <div class="container section has-text-centered">
                 <p>Conectado como <b>{{ nick }}</b></p>
@@ -76,32 +77,58 @@
 
 <script>
 import PageHeader from "../Landing/pageHeader.vue";
+import { useRouter } from 'vue-router'
 import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
-
 const socket = io("http://localhost:4000");
 
 export default {
     name: 'Chat',
+    data() {
+        return {
+            nick: "Juan",
+            message: "",
+            messages: [],
+            router: useRouter()
+        }
+    },
     components: {
-    PageHeader,
+        PageHeader,
     },
     methods: {
-        enviarMensaje: () => {
-            alert("Enviando mensaje...");
+        enviarMensaje: function (event) {
+            !document.cookie ? () => {
+                alert("Debes iniciar sesión para enviar mensajes en el chat!");
+                this.router('/login');
+            } : '';
+
+            let nombre = document.cookie.split("=")[1];
+            if (this.message == "") {
+                alert("Por favor digita algo para enviar el mensaje...");
+            } else {
+
+                // Se declara todo el mensaje
+                // para poder ser enviado
+                let theMessage = {
+                    nick: nombre,
+                    message: this.message,
+                    date: new Date().getTime()
+                }
+
+                socket.emit("mensaje-de-cliente", theMessage);
+                this.message = '';
+            }
         },
-        greet: function (event) {
-        // `this` inside methods points to the Vue instance
-        alert('Hello ' + this.name + '!');
-        // `event` is the native DOM event
-        if (event) {
-            alert(event.target.tagName);
-        }
-        }
-}
+    },
+    mounted() {
+        socket.on("mensaje-de-servidor", res => {
+            this.messages.push(res);
+            // res
+            // nick: "Prueba",
+            // message: "Prueba",
+            // date: new Date().getTime()
+        })
+    }
 };
-
-  
-
 </script>
 
 <style scoped>
