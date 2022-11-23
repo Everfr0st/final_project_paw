@@ -12,7 +12,9 @@
                 <div class="carousel-item active">
                     <img src="./burguer.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Texto genial que hace comprar a la gente :D</h5>
+                        <h5 class="bg-light text-dark py-3">
+                            Texto genial que hace comprar a la gente :D
+                        </h5>
                         <p>ALGOOOOO</p>
                     </div>
                 </div>
@@ -45,7 +47,7 @@
     </body>
 
     <footer>
-        <Footer/>
+        <Footer></Footer>
     </footer>
 </template>
 

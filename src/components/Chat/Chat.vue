@@ -115,17 +115,16 @@ export default {
                 }
 
                 socket.emit("mensaje-de-cliente", theMessage);
+
+                // Eliminamos el mensaje del input
                 this.message = '';
             }
         },
     },
+
     mounted() {
         socket.on("mensaje-de-servidor", res => {
             this.messages.push(res);
-            // res
-            // nick: "Prueba",
-            // message: "Prueba",
-            // date: new Date().getTime()
         })
     }
 };
@@ -151,4 +150,3 @@ body {
     background: #dcf8c6;
 }
 </style>
-
