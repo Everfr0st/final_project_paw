@@ -79,7 +79,7 @@
 import PageHeader from "../Landing/pageHeader.vue";
 import { useRouter } from 'vue-router'
 import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
-const socket = io("http://localhost:4000");
+const socket = io("https://uao-sockets-acv.herokuapp.com/socket.io/socket.io.js");
 
 export default {
     name: 'Chat',
